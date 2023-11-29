@@ -1,0 +1,37 @@
+<div class="table">
+    <div class="table-header">
+        <div class="table-header-input">
+            <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+                <input type="text" name="search" id="search" nz-input placeholder="Search..." />
+            </nz-input-group>
+            <ng-template #suffixIconButton>
+                <button nz-button nzType="primary" nzSearch><span nz-icon nzType="search"></span></button>
+            </ng-template>
+        </div>
+        <div *ngxPermissionsOnly="['user_create']" class="table-header-button">
+            <button nz-button type="button" nzType="primary" nzPlus (click)="openForCreate()">
+                <span nz-icon nzType="plus" nzTheme="outline"></span>
+                CREATE
+            </button>
+        </div>
+    </div>
+
+    <nz-table #basicTable [nzData]="(user$ | async) ?? []" nzShowPagination>
+        <thead>
+            <tr>
+                <th nzWidth="150px">USER NAME</th>
+                <th nzWidth="150px">EMAIL</th>
+                <th nzWidth="150px">USER ROLE</th>
+                <th nzWidth="150px">isBLOCK</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of basicTable.data" (click)="openDrawerForUpdate(data)">
+                <td>{{data.name}}</td>
+                <td>{{data.email}}</td>
+                <td>{{data.role?.title}}</td>
+                <td>{{data.isBlock ? 'Block' : 'Unblock'}}</td>
+            </tr>
+        </tbody>
+    </nz-table>
+</div>

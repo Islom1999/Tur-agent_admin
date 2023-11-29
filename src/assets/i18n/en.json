@@ -1,0 +1,29 @@
+{
+    "Dashboard": "Dashboard",
+    "Specification": "Specification",
+    "Part_Name": "Part Name",
+    "Settings": "Settings",
+    "Car_Maker": "Car Maker",
+    "Car_Model": "Car Model",
+    "Main_Part": "Main Part",
+    "Sub_Part": "Sub Part",
+    "Users": "Users",
+    "Permissions": "Permissions",
+    "PRODUCTS": "PRODUCTS",
+
+    "Super Admin": "Super Admin",
+    "Your Profile": "Your Profile",
+    "Log Out": "Log Out",
+
+    "Car Maker List": "Car Maker List",
+    "Car Model List": "Car Model List",
+    "Specification List": "Specification List",
+    "Main Part List": "Main Part List",
+    "Sub Part List": "Sub Part List",
+    "Part Name List": "Part Name List",
+    "User List": "User List",
+    "User": "User",
+    "Role List": "Role List",
+    "Role": "Role",
+    "Search": "Search"
+}

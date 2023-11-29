@@ -1,0 +1,21 @@
+<div class="dropdown">
+    <div class="dropdown-menu">
+        <button type="button" class="dropdown-icon" (click)="toggleDropdown()">
+            <img src="assets/icons/language.svg" alt="">
+        </button>
+        <div class="dropdown-list" [class.open]="isOpen">
+            <button type="button" (click)="toggleLanguage('en')">
+                <img src="assets/icons/usa-flag.svg" alt="">
+                <span>English</span>
+            </button>
+            <button type="button" (click)="toggleLanguage('kr')">
+                <img src="assets/icons/kor-flag.svg" alt="">
+                <span>Korean</span>
+            </button>
+            <button type="button" (click)="toggleLanguage('ru')">
+                <img src="assets/icons/rus-flag.svg" alt="">
+                <span>Russian</span>
+            </button>
+        </div>
+    </div>
+</div>

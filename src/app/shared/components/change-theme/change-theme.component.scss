@@ -1,0 +1,30 @@
+.theme-dropdown {
+    position: relative;
+    border-radius: 5px;
+}
+
+.theme-dropdown-icon {
+    background: #F6F7F8;
+    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: #eeeeee;
+    }
+
+    &.change{
+        svg{
+            stroke: #67748E;
+            path{
+                stroke: #67748E;
+            }
+        }
+    }
+}

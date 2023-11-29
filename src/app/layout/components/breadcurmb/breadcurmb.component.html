@@ -1,0 +1,11 @@
+<nz-breadcrumb nzSeparator="">
+    <ng-container *ngFor="let breadcrumb of breadcrumbs$ | async">
+        <div class="breadcrumb-header">{{breadcrumb.header}}</div>
+        <nz-breadcrumb-item>
+            <a routerLink="dashboard">Dashboard</a>
+        </nz-breadcrumb-item>
+        <nz-breadcrumb-item  [routerLink]="breadcrumb.url">
+            / {{ breadcrumb.label }}
+        </nz-breadcrumb-item>
+    </ng-container>
+</nz-breadcrumb>

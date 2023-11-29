@@ -1,0 +1,29 @@
+<aside [class.sidenavOpen]="isOpen" class="sidenav">
+    <div class="sidenav__content">
+        <div class="sidenav__header">
+            <!-- <img (click)="toggleSidenav()" src="assets/icons/close.svg" alt=""> -->
+        </div>
+        <ul class="sidenav__menu">
+            <li>
+                <a href="index.html">
+                    <img src="assets/icons/dashboard.svg" alt="">
+                    <span>{{'Dashboard' | translate}}</span>
+                </a>
+            </li>
+            <li class="sub-menu" *ngFor="let menu of menus" [class.active]="menu.state === 'expanded'">
+                <a href="javascript:void(0);" (click)="toggleMenu(menu, $event)">
+                    <img [src]="menu.icon" alt="">
+                    <span>{{menu.title | translate}}</span>
+                    <i class="arrow fa fa-angle-right pull-right"></i>
+                </a>
+                <ul [@slideInOut]="menu.state">
+                    <li *ngFor="let item of menu.submenuItems">
+                    <a [routerLink]="item.url">{{item.label | translate}}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</aside>
+
+<div [class.overlay-show]="isOpen" class="overlay" (click)="toggleOverlay()"></div>

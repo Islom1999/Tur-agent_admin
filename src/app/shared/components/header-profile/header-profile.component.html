@@ -1,0 +1,18 @@
+<div class="profile-dropdown">
+    <div class="profile-dropdown-menu">
+        <button type="button" class="profile-dropdown-icon" (click)="toggleDropdown()">
+            <img src="assets/icons/user.svg" alt="">
+            <span>{{ 'Super Admin' | translate }}</span>
+        </button>
+        <div class="profile-dropdown-list" [class.open]="isOpen">
+            <button type="button">
+                <img src="assets/icons/myProfile.svg" alt="">
+                <span>{{ 'Your Profile' | translate }}</span>
+            </button>
+            <button type="button" (click)="logout()">
+                <img src="assets/icons/logout.svg" alt="">
+                <span>{{ 'Log Out' | translate }}</span>
+            </button>
+        </div>
+    </div>
+</div>

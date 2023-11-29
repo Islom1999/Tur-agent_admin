@@ -1,0 +1,132 @@
+.table {
+    width: 100%;
+    table-layout: fixed;
+    background-color: #fff;
+    padding: 26px 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    -webkit-box-shadow: -1px 3px 11px 3px rgba(231, 231, 231, 0.2);
+    -moz-box-shadow: -1px 3px 11px 3px rgba(231, 231, 231, 0.2);
+    box-shadow: -1px 3px 11px 3px rgba(231, 231, 231, 0.2);
+
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &-input {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 300px;
+            height: 40px;
+            border: 1px solid rgba(145, 158, 171, 0.32);
+            border-radius: 5px;
+            padding: 0 15px 0 10px;
+
+            input {
+                flex: 1;
+            }
+        }
+
+        &-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            button {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.excel,
+.printer,
+.addNew,
+.searchInput {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.addNew {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #FF9F43;
+    color: #ffffff;
+    padding: 7px 15px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: #fe820e;
+    }
+}
+
+td img {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+}
+
+nz-table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+::ng-deep .ant-table-thead>tr>th {
+    height: 43px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    letter-spacing: 0.36px;
+    overflow: hidden;
+    color: #8A92A6;
+    font-weight: 500;
+    line-height: 175%;
+}
+
+.ant-table-tbody>tr>td {
+    padding: 4px 16px;
+    height: 64px;
+    // border-bottom: 1px dashed #E5EAEE;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    color: #232D42;
+}
+
+.custom-pagination {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media screen and (max-width: 992px) {
+    .table {
+        box-shadow: unset;
+        border-radius: unset;
+        padding: 26px 0;
+
+        &-header {
+            padding: 0 20px;
+        }
+    }
+
+    nz-pagination {
+        padding: 0 20px;
+    }
+}
+
+::ng-deep.ant-table-ping-right:not(.ant-table-has-fix-right) .ant-table-container::after {
+    box-shadow: unset;
+}
+
+::ng-deep.ant-table-ping-left:not(.ant-table-has-fix-left) .ant-table-container::before {
+    box-shadow: unset;
+}

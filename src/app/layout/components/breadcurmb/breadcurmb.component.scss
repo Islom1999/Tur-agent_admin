@@ -1,0 +1,33 @@
+nz-breadcrumb {
+   margin-bottom: 16px;
+}
+
+nz-breadcrumb-item {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-size: 13px;
+    line-height: 21px;
+    font-weight: 500;
+    color: #555555;
+}
+
+.breadcrumb-header{
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+    color: #212b36;
+}
+
+@media screen and (max-width: 992px) {
+
+    nz-breadcrumb {
+            margin: 16px 16px;
+        }
+}
+@media screen and (max-width: 768px) {
+
+    nz-breadcrumb {
+        display: none;
+        }
+}
