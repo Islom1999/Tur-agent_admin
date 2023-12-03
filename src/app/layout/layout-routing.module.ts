@@ -18,6 +18,18 @@ const routes: Routes = [
       // canActivate: [canActivatePermission],
       // data: { permissions: ['user_view'] }
     },
+    {
+      path: 'country', 
+      loadChildren: () => import('../modules').then(m => m.CountryModule),
+      // canActivate: [canActivatePermission],
+      // data: { permissions: ['user_view'] }
+    },
+    {
+      path: 'region', 
+      loadChildren: () => import('../modules').then(m => m.RegionModule),
+      // canActivate: [canActivatePermission],
+      // data: { permissions: ['user_view'] }
+    },
   ] },
 ];
 

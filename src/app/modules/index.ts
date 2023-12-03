@@ -1,2 +1,5 @@
 export * from './role/role.module'
 export * from './user/user.module'
+export * from './country/country.module'
+export * from './region/region.module'
+export * from './planning/planning.module'
