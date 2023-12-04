@@ -1,0 +1,36 @@
+<div class="table-header">
+    <div class="table-header-input">
+        <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+            <input type="text" name="search" id="search" nz-input placeholder="Search..." />
+        </nz-input-group>
+        <ng-template #suffixIconButton>
+            <button nz-button nzType="primary" nzSearch><span nz-icon nzType="search"></span></button>
+        </ng-template>
+    </div>
+    <div class="table-header-button">
+        <button nz-button type="button" nzType="primary" nzPlus (click)="openForCreate()">
+            <span nz-icon nzType="plus" nzTheme="outline"></span>
+            CREATE
+        </button>
+    </div>
+</div>
+
+<nz-table #basicTable [nzData]="(accomidations$ | async) ?? []" [nzScroll]="{ y: 'auto' }"
+    nzShowPagination>
+    <thead>
+        <tr>
+            <th>Hotel</th>
+            <th>Night</th>
+            <th>Package</th>
+            <th>Region</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of basicTable.data" (click)="openDrawerForUpdate(data)">
+            <td>{{data.hotel_en}}</td>
+            <td>{{data.night}}</td>
+            <td>{{data?.package?.name_en}}</td>
+            <td>{{data?.region?.name_en}}</td>
+        </tr>
+    </tbody>
+</nz-table>

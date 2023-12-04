@@ -5,3 +5,7 @@ export * from './region'
 export * from './planning'
 export * from './partner'
 export * from './package'
+
+export * from './routes'
+export * from './highlight'
+export * from './accomidation'

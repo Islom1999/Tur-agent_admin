@@ -40,9 +40,35 @@
             <td>{{data.description_en}}</td> -->
             <td>
                 <nz-button-group>
-                    <button nz-button [routerLink]="['edit', data.id]">
+                    <button nz-button nz-popover [nzPopoverTitle]="titleTemplate" [nzPopoverContent]="contentTemplate">
                         <span nz-icon nzType="edit" nzTheme="twotone"></span>
                     </button>
+
+                    <ng-template #titleTemplate>
+                        Update Package
+                    </ng-template>
+
+                    <ng-template #contentTemplate>
+                        <div style="display: flex; flex-direction: column;">
+                            <button style="text-align: start;" nz-button [routerLink]="['edit', data.id]">
+                                <span nz-icon nzType="edit" nzTheme="twotone"></span>
+                                Package Data
+                            </button>
+                            <button style="text-align: start;" nz-button [routerLink]="['edit', data.id, 'routes']">
+                                <span nz-icon nzType="edit" nzTheme="twotone"></span>
+                                Package Routes
+                            </button>
+                            <button style="text-align: start;" nz-button [routerLink]="['edit', data.id, 'highlight']">
+                                <span nz-icon nzType="edit" nzTheme="twotone"></span>
+                                Package Highlight
+                            </button>
+                            <button style="text-align: start;" nz-button [routerLink]="['edit', data.id, 'accommodation']">
+                                <span nz-icon nzType="edit" nzTheme="twotone"></span>
+                                Package Accommodation
+                            </button>
+                        </div>
+                    </ng-template>
+
                     <button  nz-popconfirm nzPopconfirmTitle="Are you sure delete this task?" [disabled]="isDisabled"
                         (nzOnConfirm)="delete(data.id)" (nzOnCancel)="cancel()" nzPopconfirmPlacement="topRight"
                         nz-button>

@@ -1,0 +1,67 @@
+<nz-spin [nzSpinning]="isLoading$">
+    <form nz-form [formGroup]="form">
+        <div nz-row [nzGutter]="8">
+
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Night is required">
+                        <input type="number" formControlName="night" nz-input="text" placeholder="name_en" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Region is required">
+                        <nz-select formControlName="region_id" nzPlaceHolder="Region">
+                            <ng-container *ngFor="let item of region$ | async">
+                                <nz-option [nzLabel]="item.name_en" [nzValue]="item.id"></nz-option>
+                            </ng-container>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Name is required">
+                        <textarea formControlName="hotel_en" nz-input="text" placeholder="name_en" ></textarea>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Name is required">
+                        <textarea formControlName="hotel_ru" nz-input="text" placeholder="name_ru" ></textarea>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Name is required">
+                        <textarea formControlName="hotel_ne" nz-input="text" placeholder="name_ne"></textarea>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Name is required">
+                        <textarea formControlName="hotel_id" nz-input="text" placeholder="name_id" ></textarea>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+    </form>
+</nz-spin>
+<div class="form-buttons">
+    <ng-container *ngIf="accomidation">
+        <button *ngxPermissionsOnly="['role_delete']" nz-button nzType="primary" (click)="onDelete()"
+            nzDanger>Delete</button>
+    </ng-container>
+    <div>
+        <button nz-button nzDanger>Cancel</button>
+        <button nz-button nzType="primary" (click)="submitData()">
+            {{accomidation?'Update':'Create'}}
+        </button>
+    </div>
+</div>

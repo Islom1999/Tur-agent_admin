@@ -5,3 +5,7 @@ export * from './region/region.module'
 export * from './planning/planning.module'
 export * from './partner/partner.module'
 export * from './package/package.module'
+
+export * from './routes/routes.module'
+export * from './highlight/highlight.module'
+export * from './accommodation/accommodation.module'
