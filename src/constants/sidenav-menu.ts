@@ -4,6 +4,7 @@ export const SIDENAV_MENU = [
         icon: 'assets/icons/spec.svg',
         state: 'collapsed',
         submenuItems: [
+            { label: 'Partner', url: 'partner' },
             { label: 'Country', url: 'country' },
             { label: 'Region', url: 'region' },
         ]

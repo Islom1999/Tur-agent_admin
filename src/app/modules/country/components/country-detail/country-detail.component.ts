@@ -36,8 +36,7 @@ export class CountryDetailComponent {
       description_ru: new FormControl('', [Validators.required]),
       description_ne: new FormControl('', [Validators.required]),
       description_id: new FormControl('', [Validators.required]),
-    });
-
+    });   
     if (this.country) {
       this.isLoading$ = true; 
       this.countryService.getById(this.country.id as string).subscribe(data => {

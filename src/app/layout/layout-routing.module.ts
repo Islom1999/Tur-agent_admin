@@ -30,6 +30,24 @@ const routes: Routes = [
       // canActivate: [canActivatePermission],
       // data: { permissions: ['user_view'] }
     },
+    {
+      path: 'planning', 
+      loadChildren: () => import('../modules').then(m => m.PlanningModule),
+      // canActivate: [canActivatePermission],
+      // data: { permissions: ['user_view'] }
+    },
+    {
+      path: 'partner', 
+      loadChildren: () => import('../modules').then(m => m.PartnerModule),
+      // canActivate: [canActivatePermission],
+      // data: { permissions: ['user_view'] }
+    },
+    {
+      path: 'package', 
+      loadChildren: () => import('../modules').then(m => m.PackageModule),
+      // canActivate: [canActivatePermission],
+      // data: { permissions: ['user_view'] }
+    },
   ] },
 ];
 

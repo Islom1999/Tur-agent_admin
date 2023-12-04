@@ -1,4 +1,21 @@
 <nz-spin [nzSpinning]="isLoading$">
+    <div class="imageBox">
+        <nz-spin [nzSize]="'small'" [nzSpinning]="isImageLoading">
+            <img class="imagePreview" *ngIf="image || imagePreview; else noImage" src="{{ image || imagePreview }}"
+                alt="" />
+        </nz-spin>
+
+        <span *ngIf="image" (click)="removeImage()" class="removeImage">
+            <img src="assets/icons/delete-image.svg">
+        </span>
+        <ng-template #noImage>
+            <label class="noImage-label">
+                <img class="add-image" src="assets/icons/add-image.svg">
+                <input type="file" NgUploadImage (imageUploaded)="handleImageUpload($event)" name="brand" accept=".png, .jpg, .jpeg" />
+            </label>
+        </ng-template>
+    </div>
+    
     <form nz-form [formGroup]="form">
         <div nz-row [nzGutter]="8">
             <div nz-col nzSpan="24">
@@ -29,39 +46,18 @@
                     </nz-form-control>
                 </nz-form-item>
             </div>
-            <div nz-col nzSpan="24">
-                <nz-form-item>
-                    <nz-form-control nzErrorTip="Name is required">
-                        <textarea formControlName="description_ru" nz-input="text" placeholder="decription_ru"></textarea>
-                    </nz-form-control>
-                </nz-form-item>
-            </div>
-            <div nz-col nzSpan="24">
-                <nz-form-item>
-                    <nz-form-control nzErrorTip="Name is required">
-                        <textarea formControlName="description_ne" nz-input="text" placeholder="decription_ne"></textarea>
-                    </nz-form-control>
-                </nz-form-item>
-            </div>
-            <div nz-col nzSpan="24">
-                <nz-form-item>
-                    <nz-form-control nzErrorTip="Name is required">
-                        <textarea formControlName="description_id" nz-input="text" placeholder="decription_id"></textarea>
-                    </nz-form-control>
-                </nz-form-item>
-            </div>
         </div>
     </form>
 </nz-spin>
 <div class="form-buttons">
-    <ng-container *ngIf="country">
+    <ng-container *ngIf="partner">
         <button *ngxPermissionsOnly="['role_delete']" nz-button nzType="primary" (click)="onDelete()"
             nzDanger>Delete</button>
     </ng-container>
     <div>
         <button nz-button nzDanger>Cancel</button>
         <button nz-button nzType="primary" (click)="submitData()">
-            {{country?'Update':'Create'}}
+            {{partner?'Update':'Create'}}
         </button>
     </div>
 </div>

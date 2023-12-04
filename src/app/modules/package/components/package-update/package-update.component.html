@@ -1,6 +1,6 @@
 <nz-spin [nzSpinning]="isLoading$">
     <form nz-form [formGroup]="form">
-
+        <!-- Images -->
         <div class="formBox">
             <div class="formBox__header">
                 <div class="formBox__title">Images</div>
@@ -35,6 +35,7 @@
         </div>
 
         <div nz-row [nzGutter]="8">
+            <!-- Country -->
             <div nz-col nzSpan="24">
                 <nz-form-item>
                     <nz-form-control nzErrorTip="Country is required">
@@ -47,14 +48,21 @@
                 </nz-form-item>
             </div>
 
+            <!-- Type -->
             <div nz-col nzSpan="24">
                 <nz-form-item>
-                    <nz-form-control nzErrorTip="Name is required">
-                        <textarea formControlName="map" nz-input="text" placeholder="Map link"></textarea>
+                    <nz-form-control nzErrorTip="Country is required">
+                        <nz-select formControlName="type" nzPlaceHolder="Type">
+                            <ng-container>
+                                <nz-option nzLabel="Personal" nzValue="Personal"></nz-option>
+                                <nz-option nzLabel="Group" nzValue="Group"></nz-option>
+                            </ng-container>
+                        </nz-select>
                     </nz-form-control>
                 </nz-form-item>
             </div>
 
+            <!-- Name -->
             <div nz-col nzSpan="24">
                 <nz-form-item>
                     <nz-form-control nzErrorTip="Name is required">
@@ -84,6 +92,67 @@
                 </nz-form-item>
             </div>
 
+            <!-- Duration -->
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Name is required">
+                        <input formControlName="duration_en" nz-input="text" placeholder="name_en" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Name is required">
+                        <input formControlName="duration_ru" nz-input="text" placeholder="name_ru" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Name is required">
+                        <input formControlName="duration_ne" nz-input="text" placeholder="name_ne" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Name is required">
+                        <input formControlName="duration_id" nz-input="text" placeholder="name_id" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+
+            <!-- Name -->
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Name is required">
+                        <input formControlName="price_en" nz-input="text" placeholder="name_en" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Name is required">
+                        <input formControlName="price_ru" nz-input="text" placeholder="name_ru" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Name is required">
+                        <input formControlName="price_ne" nz-input="text" placeholder="name_ne" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Name is required">
+                        <input formControlName="price_id" nz-input="text" placeholder="name_id" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+
+            <!-- Description -->
             <div nz-col nzSpan="24">
                 <nz-form-item>
                     <nz-form-control nzErrorTip="Description is required">
@@ -112,6 +181,36 @@
                     </nz-form-control>
                 </nz-form-item>
             </div>
+
+            <!-- Notes -->
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Description is required">
+                        <ckeditor formControlName="notes_en" [editor]="Editor" data="<p>Ba'zi matnlar bu yerga joylashtiriladi.</p>"></ckeditor>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Description is required">
+                        <ckeditor formControlName="notes_ru" [editor]="Editor" data="<p>Ba'zi matnlar bu yerga joylashtiriladi.</p>"></ckeditor>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Description is required">
+                        <ckeditor formControlName="notes_ne" [editor]="Editor" data="<p>Ba'zi matnlar bu yerga joylashtiriladi.</p>"></ckeditor>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Description is required">
+                        <ckeditor formControlName="notes_id" [editor]="Editor" data="<p>Ba'zi matnlar bu yerga joylashtiriladi.</p>"></ckeditor>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
         </div>
     </form>
 </nz-spin>
@@ -119,7 +218,7 @@
     <div>
         <button nz-button nzDanger (click)="cancel()">Cancel</button>
         <button nz-button nzType="primary" (click)="submitData()">
-            {{region?'Update':'Create'}}
+            {{packege?'Update':'Create'}}
         </button>
     </div>
 </div>

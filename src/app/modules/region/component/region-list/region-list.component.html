@@ -8,7 +8,7 @@
         </ng-template>
     </div>
     <div class="table-header-button">
-        <button nz-button type="button" nzType="primary" nzPlus (click)="openForCreate()">
+        <button nz-button type="button" nzType="primary" nzPlus [routerLink]="['add']">
             <span nz-icon nzType="plus" nzTheme="outline"></span>
             CREATE
         </button>
@@ -22,13 +22,26 @@
             <th>Name</th>
             <th>Country</th>
             <th>Description</th>
+            <th>Controls</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let data of basicTable.data" (click)="openDrawerForUpdate(data)">
+        <tr *ngFor="let data of basicTable.data">
             <td>{{data.name_en}}</td>
             <td>{{data.country?.name_en}}</td>
             <td>{{data.description_en}}</td>
+            <td>
+                <nz-button-group>
+                    <button nz-button [routerLink]="['edit', data.id]">
+                        <span nz-icon nzType="edit" nzTheme="twotone"></span>
+                    </button>
+                    <button  nz-popconfirm nzPopconfirmTitle="Are you sure delete this task?" [disabled]="isDisabled"
+                        (nzOnConfirm)="delete(data.id)" (nzOnCancel)="cancel()" nzPopconfirmPlacement="topRight"
+                        nz-button>
+                        <span nz-icon nzType="delete" nzTheme="twotone"></span>
+                    </button>
+                </nz-button-group>
+            </td>
         </tr>
     </tbody>
 </nz-table>

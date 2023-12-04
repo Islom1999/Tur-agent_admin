@@ -1,32 +1,33 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RegionListComponent } from './component/region-list/region-list.component';
-import { RegionDetailComponent } from './component/region-detail/region-detail.component';
-import { BaseModule } from 'src/app/shared/modules';
+import { PackageListComponent } from './components/package-list/package-list.component';
+import { PackageCreateComponent } from './components/package-create/package-create.component';
+import { PackageUpdateComponent } from './components/package-update/package-update.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { UploadImageDirective } from 'src/app/shared/directives';
 import { NzImageModule } from 'ng-zorro-antd/image';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { BaseModule } from 'src/app/shared/modules';
 
 const routes: Routes = [
-  { path: '', component: RegionListComponent },
+  { path: '', component: PackageListComponent },
   {
     path: 'add', 
-    component: RegionDetailComponent,
+    component: PackageCreateComponent,
   },
   { 
     path: 'edit/:id', 
-    component: RegionDetailComponent,
+    component: PackageUpdateComponent,
   },
 ];
 
-
 @NgModule({
   declarations: [
-    RegionListComponent,
-    RegionDetailComponent
+    PackageListComponent,
+    PackageCreateComponent,
+    PackageUpdateComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +38,6 @@ const routes: Routes = [
     UploadImageDirective,
     NzImageModule,
     DragDropModule,
-    // NzAutocompleteModule
   ]
 })
-export class RegionModule { }
+export class PackageModule { }

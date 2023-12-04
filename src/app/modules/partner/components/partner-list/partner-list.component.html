@@ -1,0 +1,34 @@
+<div class="table-header">
+    <div class="table-header-input">
+        <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+            <input type="text" name="search" id="search" nz-input placeholder="Search..." />
+        </nz-input-group>
+        <ng-template #suffixIconButton>
+            <button nz-button nzType="primary" nzSearch><span nz-icon nzType="search"></span></button>
+        </ng-template>
+    </div>
+    <div *ngxPermissionsOnly="['role_create']" class="table-header-button">
+        <button nz-button type="button" nzType="primary" nzPlus (click)="openForCreate()">
+            <span nz-icon nzType="plus" nzTheme="outline"></span>
+            CREATE
+        </button>
+    </div>
+</div>
+
+<nz-table #basicTable [nzData]="(partners$ | async) ?? []" [nzScroll]="{ y: 'auto' }"
+    nzShowPagination>
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr  *ngFor="let data of basicTable.data" (click)="openDrawerForUpdate(data)">
+            <td>
+                <img *ngIf="data.image" src="{{ getImageUrl(data.image) }}" alt="not found image">
+            </td>
+            <td>{{data.name_en}}</td>
+        </tr>
+    </tbody>
+</nz-table>

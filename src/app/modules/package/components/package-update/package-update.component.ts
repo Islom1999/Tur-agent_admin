@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Observable, of } from 'rxjs';
-import { ICountry, IPlanning } from 'src/interfaces';
-import { PlanningService } from '../../service/planning.service';
+import { ICountry, IPackage } from 'src/interfaces';
+import { PackageService } from '../../service/package.service';
 import { CountryService } from 'src/app/modules/country/service/country.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,13 +11,13 @@ import { ImageService } from 'src/app/shared/services/image.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
-  selector: 'app-planning-detail',
-  templateUrl: './planning-detail.component.html',
-  styleUrls: ['./planning-detail.component.scss']
+  selector: 'app-package-update',
+  templateUrl: './package-update.component.html',
+  styleUrls: ['./package-update.component.scss']
 })
-export class PlanningDetailComponent {
+export class PackageUpdateComponent {
   permissionsTypes = Object.values(Permissions);
-  planning!: IPlanning;
+  packege!: IPackage;
   form: FormGroup = new FormGroup({});
   isLoading$: boolean = false;
   country$: Observable<ICountry[]> = of([]);
@@ -33,7 +33,7 @@ export class PlanningDetailComponent {
   }
 
   constructor(
-    private planningService: PlanningService,
+    private packegeService: PackageService,
     private countryService: CountryService,
     private messageSvc: NzMessageService,
     private route: ActivatedRoute,
@@ -45,21 +45,39 @@ export class PlanningDetailComponent {
   ngOnInit(): void {
     this.form = new FormGroup({
       country_id: new FormControl('', [Validators.required]),
+      type: new FormControl('', [Validators.required]),
+
       name_en: new FormControl('', [Validators.required]),
       name_ru: new FormControl('', [Validators.required]),
       name_ne: new FormControl('', [Validators.required]),
       name_id: new FormControl('', [Validators.required]),
+
       description_en: new FormControl('', [Validators.required]),
       description_ru: new FormControl('', [Validators.required]),
       description_ne: new FormControl('', [Validators.required]),
       description_id: new FormControl('', [Validators.required]),
+
+      notes_en: new FormControl('', [Validators.required]),
+      notes_ru: new FormControl('', [Validators.required]),
+      notes_ne: new FormControl('', [Validators.required]),
+      notes_id: new FormControl('', [Validators.required]),
+
+      price_en: new FormControl('', [Validators.required]),
+      price_ru: new FormControl('', [Validators.required]),
+      price_ne: new FormControl('', [Validators.required]),
+      price_id: new FormControl('', [Validators.required]),
+
+      duration_en: new FormControl('', [Validators.required]),
+      duration_ru: new FormControl('', [Validators.required]),
+      duration_ne: new FormControl('', [Validators.required]),
+      duration_id: new FormControl('', [Validators.required]),
     });
 
     this.country$ = this.countryService.country$
 
-    // if (this.planning) {
+    // if (this.packege) {
     //   this.isLoading$ = true; 
-    //   this.planningService.getById(this.planning.id as string).subscribe(data => {
+    //   this.packegeService.getById(this.packege.id as string).subscribe(data => {
     //     this.form.patchValue(data)
     //     this.isLoading$ = false;
     //   })
@@ -69,8 +87,8 @@ export class PlanningDetailComponent {
       // this.isEdit = true;
       this.isLoading$ = true;
       // this.enableFormControls();
-      this.planningService.getById(this.id as string).subscribe(data => {
-        this.planning = data
+      this.packegeService.getById(this.id as string).subscribe(data => {
+        this.packege = data
         this.form.patchValue(data)
         this.isLoading$ = false;
         if (data.images && data.images.length) {
@@ -87,11 +105,11 @@ export class PlanningDetailComponent {
 
     const data = this.prepareData();
 
-    if (this.planning && this.planning.id) {
-      this.updatePlanning(this.planning.id, data);
+    if (this.packege && this.packege.id) {
+      this.updatePackage(this.packege.id, data);
       this.cancel()
     } else {
-      this.createPlanning(data);
+      this.createPackage(data);
       this.cancel()
     }
   }
@@ -111,18 +129,24 @@ export class PlanningDetailComponent {
     const { 
       name_en, name_id, name_ne, name_ru,
       description_en, description_id, description_ne, description_ru,
-      country_id,
+      notes_en, notes_id, notes_ne, notes_ru,
+      price_en, price_id, price_ne, price_ru,
+      duration_en, duration_id, duration_ne, duration_ru,
+      country_id, type
     } = this.form.getRawValue();
     const images = this.images.map((image) => this.imageSvc.removeBaseUrl(image));
     return { 
       name_en, name_id, name_ne, name_ru,
       description_en, description_id, description_ne, description_ru,
-      country_id, images
+      notes_en, notes_id, notes_ne, notes_ru,
+      price_en, price_id, price_ne, price_ru,
+      duration_en, duration_id, duration_ne, duration_ru,
+      country_id, type, images
     };
   }
 
-  private updatePlanning(id: string, data: IPlanning) {
-    this.planningService.updatePlanning(id, data).subscribe(updatedData => {
+  private updatePackage(id: string, data: IPackage) {
+    this.packegeService.updatePackage(id, data).subscribe(updatedData => {
       if (updatedData) {
         this.messageSvc.success('Updated Successfully');
         // this.drawerRef.close();
@@ -130,8 +154,8 @@ export class PlanningDetailComponent {
     });
   }
 
-  private createPlanning(data: IPlanning) {
-    this.planningService.addPlanning(data).subscribe(createdData => {
+  private createPackage(data: IPackage) {
+    this.packegeService.addPackage(data).subscribe(createdData => {
       if (createdData) {
         this.messageSvc.success('Created Successfully');
         // this.drawerRef.close();
@@ -140,7 +164,7 @@ export class PlanningDetailComponent {
   }
 
   cancel() {
-    this.router.navigate(['/planning'], { relativeTo: this.route });
+    this.router.navigate(['/package'], { relativeTo: this.route });
     this.form.reset()
     // this.images = []
   }

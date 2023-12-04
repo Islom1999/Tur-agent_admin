@@ -1,0 +1,63 @@
+@use '../../../../shared/styles/detail';
+
+.imageBox {
+    position: relative;
+    width: fit-content;
+    margin:0 auto 20px auto;
+}
+
+.imageBox .imagePreview,
+.imageBox .noImage-label {
+    width: 144px;
+    height: 144px;
+    object-fit: contain;
+    border: 0.5px solid #7dd3fc;
+    border-radius: 6px;
+    background: white;
+    padding: 4px;
+}
+
+.removeImage{
+    color: #F87171;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    :hover {
+        color: #DC2626;
+    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-image{
+    width: 9rem;
+    height: 9rem;
+}
+
+.noImage-label{
+    display: flex;
+    overflow: hidden;
+
+    input{
+        display: none;
+    }
+}
+.imageBox>span {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: -12px;
+    right: -12px;
+    cursor: pointer;
+    border-radius: 9999px;
+    background-color: white;
+    padding: 4px;
+}
+
+.image-container {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center center;
+    cursor: pointer;
+}

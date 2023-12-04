@@ -5,7 +5,6 @@ import { CountryListComponent } from './components/country-list/country-list.com
 import { BaseModule } from 'src/app/shared/modules';
 import { RouterModule, Routes } from '@angular/router';
 
-
 const routes: Routes = [
   { path: '', component: CountryListComponent },
 ];

@@ -1,37 +1,39 @@
 import { Component } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { CountryService } from '../../service/country.service';
+import { IPartner } from 'src/interfaces';
+import { PartnerService } from '../../service/partner.service';
 import { PermissionService } from 'src/app/shared/services/permission.service';
 import { DrawerService } from 'src/app/shared/services/drawer.service';
 import { BreadcrumbsService } from 'src/app/shared/services/breadcrumbs.service';
 import { NzDrawerService } from 'ng-zorro-antd/drawer';
 import { NgxPermissionsService } from 'ngx-permissions';
-import { ICountry } from 'src/interfaces';
-import { CountryDetailComponent } from '../country-detail/country-detail.component';
+import { PartnerDetailComponent } from '../partner-detail/partner-detail.component';
+import { ImageService } from 'src/app/shared/services/image.service';
 
 @Component({
-  selector: 'app-country-list',
-  templateUrl: './country-list.component.html',
-  styleUrls: ['./country-list.component.scss']
+  selector: 'app-partner-list',
+  templateUrl: './partner-list.component.html',
+  styleUrls: ['./partner-list.component.scss']
 })
-export class CountryListComponent {
-  countrys$: Observable<ICountry[]> = of([])
+export class PartnerListComponent {
+  partners$: Observable<IPartner[]> = of([])
 
   constructor(
-    private countryScv: CountryService,
+    private partnerScv: PartnerService,
     private permission : PermissionService,
     private drawerService: DrawerService,
     private breadcrumbService: BreadcrumbsService,
     private nzDrawerService: NzDrawerService,
     private permissionsService: NgxPermissionsService,
+    private imageSvc: ImageService, 
   ) {
     this.breadcrumbService.setBreadcrumbs([
-      {header:'Country List', label: 'Country', url: 'country' }
+      {header:'Partner List', label: 'Partner', url: 'partner' }
     ])
   }
 
   ngOnInit(): void {
-    this.countrys$ = this.countryScv.country$   
+    this.partners$ = this.partnerScv.partner$   
     this.permission.getPermisssion().subscribe(permission => {
       this.permissionsService.loadPermissions(permission);
     }) 
@@ -39,18 +41,22 @@ export class CountryListComponent {
 
   openForCreate() {
     this.drawerService.openDrawer(
-      CountryDetailComponent
+      PartnerDetailComponent
     )
   }
 
-  openDrawerForUpdate(country: ICountry): void {
+  openDrawerForUpdate(partner: IPartner): void {
     this.nzDrawerService.create({
-      nzContent: CountryDetailComponent,
-      nzContentParams: { country }
+      nzContent: PartnerDetailComponent,
+      nzContentParams: { partner }
     })
-    this.permissionsService.hasPermission('country_update').then(hasPermission => {
-      if (hasPermission && country.id) {
+    this.permissionsService.hasPermission('partner_update').then(hasPermission => {
+      if (hasPermission && partner.id) {
       }
     });
+  }
+
+  getImageUrl(image: string): string {
+    return this.imageSvc.getImageUrl(image);
   }
 }

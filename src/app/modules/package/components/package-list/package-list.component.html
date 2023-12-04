@@ -15,21 +15,29 @@
     </div>
 </div>
 
-<nz-table #basicTable [nzData]="(plannings$ | async) ?? []" [nzScroll]="{ y: 'auto' }"
+<nz-table #basicTable [nzData]="(packeges$ | async) ?? []" [nzScroll]="{ y: 'auto' }"
     nzShowPagination>
     <thead>
         <tr>
             <th>Name</th>
+            <th>Duration</th>
+            <th>Type</th>
+            <th>Price</th>
             <th>Country</th>
-            <th>Description</th>
+            <!-- <th>Notes</th>
+            <th>Description</th> -->
             <th>Controls</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let data of basicTable.data">
             <td>{{data.name_en}}</td>
+            <td>{{data.duration_en}}</td>
+            <td>{{data.type}}</td>
+            <td>{{data.price_en}}</td>
             <td>{{data.country?.name_en}}</td>
-            <td>{{data.description_en}}</td>
+            <!-- <td>{{data.notes_en}}</td>
+            <td>{{data.description_en}}</td> -->
             <td>
                 <nz-button-group>
                     <button nz-button [routerLink]="['edit', data.id]">
