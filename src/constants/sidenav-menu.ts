@@ -5,7 +5,7 @@ export const SIDENAV_MENU = [
         state: 'collapsed',
         submenuItems: [
             { label: 'Partner', url: 'partner' },
-            { label: 'Country', url: 'country' },
+            // { label: 'Country', url: 'country' },
             { label: 'Region', url: 'region' },
         ]
     },
