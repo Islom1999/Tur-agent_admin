@@ -48,6 +48,12 @@ const routes: Routes = [
       // canActivate: [canActivatePermission],
       // data: { permissions: ['user_view'] }
     },
+    {
+      path: 'blog', 
+      loadChildren: () => import('../modules').then(m => m.BlogModule),
+      // canActivate: [canActivatePermission],
+      // data: { permissions: ['user_view'] }
+    },
   ] },
 ];
 

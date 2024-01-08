@@ -16,6 +16,7 @@ export const SIDENAV_MENU = [
         submenuItems: [
             { label: 'Planning', url: 'planning' },
             { label: 'Package', url: 'package' },
+            { label: 'Blog', url: 'blog' },
         ]
     },
     {

@@ -1,0 +1,109 @@
+<nz-spin [nzSpinning]="isLoading$">
+    <form nz-form [formGroup]="form">
+
+        <div class="formBox">
+            <div class="formBox__header">
+                <div class="formBox__title">Images</div>
+            </div>
+
+            <div class="upload-image">
+                <div class="upload-image__drop" (dragover)="dragOver($event)" (drop)="onDrop($event)"
+                    (dragleave)="dragLeave($event)" cdkDropList cdkDropListOrientation="horizontal"
+                    (cdkDropListDropped)="drop($event)">
+                    <span class="upload-image__list" *ngFor="let image of images; let index = index" cdkDrag
+                        cdkDragBoundary=".boundary">
+                        <img src="{{ image }}" alt="" class="upload-image__prev" />
+                        <span (click)="removeImage(index)" class="upload-image__remove">
+                            <svg class="upload-image__remove-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </span>
+                    </span>
+                    <span *ngIf="images.length < 5" class="upload-image__handle">
+                        <nz-spin [nzSpinning]="imgLoading" [nzSize]="'small'">
+                            <label class="noImage-label">
+                                <img class="add-image" src="assets/icons/add-image.svg">
+                                <input type="file" multiple (change)="handleFileSelect($event)" id="brand" name="brand"
+                                    accept=".png, .jpg, .jpeg" />
+                            </label>
+                        </nz-spin>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div nz-row [nzGutter]="8">
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Name is required">
+                        <input formControlName="title_en" nz-input="text" placeholder="title_en" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Name is required">
+                        <input formControlName="title_ru" nz-input="text" placeholder="title_ru" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Name is required">
+                        <input formControlName="title_ne" nz-input="text" placeholder="title_ne" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Name is required">
+                        <input formControlName="title_id" nz-input="text" placeholder="title_id" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Description is required">
+                        <ckeditor class="ckeditor" formControlName="description_en" [editor]="Editor"
+                            data="<p>Ba'zi matnlar bu yerga joylashtiriladi.</p>"></ckeditor>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Description is required">
+                        <ckeditor formControlName="description_ru" [editor]="Editor"
+                            data="<p>Ba'zi matnlar bu yerga joylashtiriladi.</p>"></ckeditor>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Description is required">
+                        <ckeditor formControlName="description_ne" [editor]="Editor"
+                            data="<p>Ba'zi matnlar bu yerga joylashtiriladi.</p>"></ckeditor>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="24">
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Description is required">
+                        <ckeditor formControlName="description_id" [editor]="Editor"
+                            data="<p>Ba'zi matnlar bu yerga joylashtiriladi.</p>"></ckeditor>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+    </form>
+</nz-spin>
+<div class="form-buttons">
+    <div>
+        <button nz-button nzDanger (click)="cancel()">Cancel</button>
+        <button nz-button nzType="primary" (click)="submitData()">
+            {{blog?'Update':'Create'}}
+        </button>
+    </div>
+</div>

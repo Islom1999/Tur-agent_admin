@@ -1,0 +1,45 @@
+<div class="table-header">
+    <div class="table-header-input">
+        <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+            <input type="text" name="search" id="search" nz-input placeholder="Search..." />
+        </nz-input-group>
+        <ng-template #suffixIconButton>
+            <button nz-button nzType="primary" nzSearch><span nz-icon nzType="search"></span></button>
+        </ng-template>
+    </div>
+    <div class="table-header-button">
+        <button nz-button type="button" nzType="primary" nzPlus [routerLink]="['add']">
+            <span nz-icon nzType="plus" nzTheme="outline"></span>
+            CREATE
+        </button>
+    </div>
+</div>
+
+<nz-table #basicTable [nzData]="(blogs$ | async) ?? []" [nzScroll]="{ y: 'auto' }" nzShowPagination>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Controls</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of basicTable.data">
+            <td>{{data.title_en}}</td>
+            <!-- <td>{{data.date}}</td> -->
+            <td>{{data.description_en}}</td>
+            <td>
+                <nz-button-group>
+                    <button nz-button [routerLink]="['edit', data.id]">
+                        <span nz-icon nzType="edit" nzTheme="twotone"></span>
+                    </button>
+                    <button nz-popconfirm nzPopconfirmTitle="Are you sure delete this task?" [disabled]="isDisabled"
+                        (nzOnConfirm)="delete(data.id)" (nzOnCancel)="cancel()" nzPopconfirmPlacement="topRight"
+                        nz-button>
+                        <span nz-icon nzType="delete" nzTheme="twotone"></span>
+                    </button>
+                </nz-button-group>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
