@@ -1,0 +1,31 @@
+name: Test CD
+
+on:
+  push:
+    branches: [ master ]
+
+env:
+  SERVER_HOST: 91.200.151.163
+  SERVER_USERNAME: root
+  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+
+jobs: 
+  build:
+
+    runs-on: ubuntu-latest
+ 
+    steps:
+    - name: Connect to server and deploy changes
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ env.SERVER_HOST }}
+        username: ${{ env.SERVER_USERNAME }}
+        key: ${{ env.SSH_PRIVATE_KEY }}
+        script: |
+          cd ~/Tur-agent_admin/
+          git pull
+          npm install
+          ng build
+          sudo rsync -av --delete /root/Tur-agent_admin/dist/spare-parts/ /var/www/asia-admin/
+          
